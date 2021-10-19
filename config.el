@@ -2,14 +2,6 @@
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
-(add-to-list 'default-frame-alist '(fullscreen . maximized)) ; maximize frame by default
-(setq doom-line-numbers-style 'relative)
-(add-hook! lsp-mode
-  (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols)))
-(add-hook! lsp-mode
-  (lsp-headerline-breadcrumb-mode))
-(after! lsp-ui
-  (setq lsp-ui-doc-show-with-cursor nil))
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
@@ -28,6 +20,7 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
+(setq doom-font (font-spec :family "monospace" :size 18))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -40,7 +33,7 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type 'relative)
 
 
 ;; Here are some additional functions/macros that could help you configure Doom:
@@ -59,3 +52,11 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+(add-to-list 'default-frame-alist '(fullscreen . maximized)) ; maximize frame by default
+
+(after! lsp-ui (setq lsp-ui-doc-show-with-cursor nil))       ; disable doc when cursor hovers
+
+(add-hook! lsp-mode                                          ; show file and symbol on headerline
+  (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
+  (setq lsp-headerline-breadcrumb-enable t))
