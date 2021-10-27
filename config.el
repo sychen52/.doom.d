@@ -55,8 +55,15 @@
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized)) ; maximize frame by default
 
-(after! lsp-ui (setq lsp-ui-doc-show-with-cursor nil))       ; disable doc when cursor hovers
+; This will work if +pyright in init.el does not
+;(after! eglot
+;  :config
+;  ;(set-eglot-client! 'python-mode '("pylsp")))
+;  (set-eglot-client! 'python-mode '("pyright-langserver" "--stdio")))
 
-(add-hook! lsp-mode                                          ; show file and symbol on headerline
-  (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
-  (setq lsp-headerline-breadcrumb-enable t))
+(after! tramp
+ :config
+  ;; Add the remote's PATH to tramp's search path (this is not default in doom or eglot).
+  (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
+
+(defalias 'flymake--diag-buffer 'flymake--diag-locus) ;https://github.com/hlissner/doom-emacs/issues/5644
