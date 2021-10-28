@@ -69,3 +69,5 @@
 (defalias 'flymake--diag-buffer 'flymake--diag-locus) ; https://github.com/hlissner/doom-emacs/issues/5644
 
 (setq show-paren-context-when-offscreen nil) ; mute error messages in a python file
+
+(package! evil-snipe :disable t) ; don't like this extra search feature
