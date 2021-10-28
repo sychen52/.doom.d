@@ -70,4 +70,5 @@
 
 (setq show-paren-context-when-offscreen nil) ; mute error messages in a python file
 
-(package! evil-snipe :disable t) ; don't like this extra search feature
+(after! evil-snipe
+  (evil-snipe-mode -1)) ; don't like this extra search feature
