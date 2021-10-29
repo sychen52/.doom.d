@@ -69,3 +69,9 @@
 (defalias 'flymake--diag-buffer 'flymake--diag-locus) ; https://github.com/hlissner/doom-emacs/issues/5644
 
 (setq show-paren-context-when-offscreen nil) ; mute error messages in a python file
+
+(setq confirm-kill-emacs nil)
+
+(after! flycheck
+  :config
+  (setq-default flycheck-disabled-checkers '(python-flake8 python-pylint)))
